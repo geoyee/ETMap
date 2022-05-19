@@ -24,7 +24,7 @@ class Recognizer(object):
         args.rec_model_dir = "weights/ch_PP-OCRv3_rec_slim_infer"
         args.rec_char_dict_path = "weights/ppocr_keys_v1.txt"
         self.text_recognizer = TextRecognizer(args)
-    
+
     def predict(self, image_list: List) -> List:
         # img_size = (32, 320, 3)
         rec_res, _ = self.text_recognizer(image_list)
@@ -44,7 +44,7 @@ class OCRer(object):
         for bbox in bboxs:
             p1 = (int(bbox[0][0]), int(bbox[0][1]))
             p2 = (int(bbox[2][0]), int(bbox[2][1]))
-            block = re_image[p1[1]: p2[1], p1[0]: p2[0], :]
+            block = re_image[p1[1] : p2[1], p1[0] : p2[0], :]
             block = cv2.resize(block, dsize=(320, 32), interpolation=cv2.INTER_BITS)
             blocks.append(block)
         output = self.recter.predict(blocks)
