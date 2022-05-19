@@ -1,7 +1,8 @@
+from typing import Dict
 import requests
 
 
-def text2lonlat(text: str):
+def text2lonlat(text: str) -> Dict:
     ak = "9ZbPdN2o1OFN7KzvQAH4riVt6bbsQGer"
     url = "https://api.map.baidu.com/geocoding/v3/?address={}&output=json&ret_coordtype=gcj02ll&ak={}".format(
         text, ak
