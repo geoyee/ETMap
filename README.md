@@ -21,6 +21,19 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
       python demo.py
       ```
 
+      View the demo by navigating to `http://localhost:5000`.
+
+## TODO
+
+- [x] Add OCR.
+- [x] Add geocoding.
+- [x] Add Map.
+- [x] Merge functions and update display.
+- [ ] Add draw lines.
+- [ ] Update geo-text-split and place merge.
+- [ ] Add about time.
+- [ ] Update UI about image input.
+
 ## Reference
 
 1. [playing-with-leaflet](https://github.com/geoyee/playing-with-leaflet)
