@@ -1,7 +1,7 @@
 from typing import List
-from ocr import OCRer
-from geocoding import text2lnglat
 from paddlenlp import Taskflow
+from .ocr import OCRer
+from .geocoding import text2lnglat
 
 
 class GeoExtracter:
@@ -13,7 +13,6 @@ class GeoExtracter:
     def location(self, image_file: str) -> List:
         text = self.ocrer.predict(image_file)
         text_list = self.ner(text)
-        # print(text_list)
         address = []
         text = ""
         # address merge
