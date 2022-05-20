@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # test data
-datas/
+# datas/
 test.db
