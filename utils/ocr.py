@@ -49,10 +49,10 @@ class OCRer(object):
             p2 = (int(bbox[2][0] * RH) + 5, int(bbox[2][1] * RW) + 5)
             block = image[p1[1] : p2[1], p1[0] : p2[0], :]
             blocks.append(self._reblock(block))
-            cv2.rectangle(image, p1, p2, color=[0, 0, 255])
-        cv2.imshow("image", image)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+            # cv2.rectangle(image, p1, p2, color=[0, 0, 255])  # display test
+        # cv2.imshow("image", image)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         return self._splicing(self.recter.predict(blocks))
 
     def _reblock(self, block: np.ndarray) -> np.ndarray:
