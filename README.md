@@ -5,21 +5,21 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 
 1. Clone this repo:
 
-   ```shell
-   git clone https://github.com/geoyee/ETMap.git
-   ```
+      ```shell
+      git clone https://github.com/geoyee/ETMap.git
+      ```
 
 2.  Install dependencies:
 
-   ```shell
-   pip install -r requirements.txt
-   ```
+      ```shell
+      pip install -r requirements.txt
+      ```
 
 3. Start server:
 
-   ```shell
-   python demo.py
-   ```
+      ```shell
+      python demo.py
+      ```
 
 ## Reference
 
