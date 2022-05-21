@@ -1,4 +1,5 @@
 # ETMap
+
 Geo temporal and spatial visualization of epidemic track. The main contents include Character detection and recognition (based on PaddleOCR), Named entity recognition (based on PaddleNLP), Map display and interaction (based on Leaflet) and Front and end interaction (based on Flask).
 
 ## How to use
@@ -29,6 +30,7 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 - [x] Add geocoding.
 - [x] Add Map.
 - [x] Merge functions and update display.
+- [x] Add GCJ02 to WGS84.
 - [ ] Add draw lines.
 - [ ] Update geo-text-split and place merge.
 - [ ] Add about time.

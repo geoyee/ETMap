@@ -1,5 +1,6 @@
 from typing import Dict
 import requests
+from coord_convert.transform import gcj2wgs
 
 
 def text2lnglat(text: str) -> Dict:
@@ -10,10 +11,10 @@ def text2lnglat(text: str) -> Dict:
     res = requests.get(url)
     val = res.json()
     if val["status"] == 0:
-        output = {
-            "lng": val["result"]["location"]["lng"],
-            "lat": val["result"]["location"]["lat"],
-        }
+        wgs_lng, wgs_lat = gcj2wgs(
+            val["result"]["location"]["lng"], val["result"]["location"]["lat"]
+        )
+        output = {"lng": wgs_lng, "lat": wgs_lat}
     else:
         output = None
     return output
