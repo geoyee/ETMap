@@ -31,9 +31,9 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 - [x] Add Map.
 - [x] Merge functions and update display.
 - [x] Add GCJ02 to WGS84.
-- [ ] Add draw lines.
+- [x] Add draw lines.
 - [ ] Update geo-text-split and place merge.
-- [ ] Add about time.
+- [x] Add about time.
 - [ ] Update UI about image input.
 
 ## Reference

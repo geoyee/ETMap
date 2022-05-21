@@ -48,14 +48,15 @@ function makeMap() {
 }
 
 function renderData(districtid) {
+    var lines = [];
     $.getJSON("/district/" + districtid, function(obj) {
-        console.log("markers is " + markers);
         var markers = obj.data.map(function(arr) {
-            console.log("arr is " + arr);
+            lines.push([arr[0], arr[1]]);
             return L.marker([arr[0], arr[1]]).bindPopup(arr[2]);
         });
         point_layer = L.layerGroup(markers);
         base_map.addLayer(point_layer);
+        L.polyline(lines, {color: "red"}).addTo(base_map);
     });
 }
 
