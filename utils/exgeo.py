@@ -30,8 +30,9 @@ class GeoExtracter:
         for text in address:
             if len(text) >= 6:
                 lnglon = text2lnglat(text)
-                lnglon["address"] = text
-                lnglon_list.append(lnglon)
+                if lnglon is not None:
+                    lnglon["address"] = text
+                    lnglon_list.append(lnglon)
         return lnglon_list
 
 
