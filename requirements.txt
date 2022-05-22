@@ -1,9 +1,9 @@
 coord-convert
 flask
 flask_sqlalchemy
+jionlp
 paddlenlp
 paddleocr
 requests
 
 # GDAL
-# Fiona

@@ -13,12 +13,10 @@ db = SQLAlchemy(app)
 class District(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(db.String(10))
-    city = db.Column(db.String(80))
 
-    def __init__(self, id: int, time: str, city: str) -> None:
+    def __init__(self, id: int, time: str) -> None:
         self.id = id
         self.time = time
-        self.city = city
 
 
 class Point(db.Model):
@@ -71,7 +69,7 @@ def district(district_id: int) -> Any:
 def add_datas(path: str, city: str, db: SQLAlchemy) -> None:
     geo_extracter = GeoExtracter(city)
     lnglon_list = geo_extracter.location(path)
-    district = District(0, "Time 0", city)
+    district = District(0, "Time 0")
     db.session.add(district)
     for did, lnglat in enumerate(lnglon_list):
         point = Point(
