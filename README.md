@@ -21,7 +21,7 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 3. Start server:
 
       ```shell
-      python demo.py
+      python app.py
       ```
 
       View the demo by navigating to `http://localhost:5000`.
