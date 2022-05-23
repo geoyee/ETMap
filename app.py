@@ -3,12 +3,13 @@ import os.path as osp
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from utils import GeoExtracter
+from exts import db
 from models import District, Point
 
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
-db = SQLAlchemy(app)
+db.init_app(app)
 
 
 @app.route("/")
@@ -45,6 +46,7 @@ def add_datas(path: str, city: str, db: SQLAlchemy) -> None:
 if __name__ == "__main__":
     if not osp.exists("test.db"):
         path = "data/test.png"
-        db.create_all()
-        add_datas(path, "沈阳市", db)
+        with app.app_context():
+            db.create_all()
+            add_datas(path, "沈阳市", db)
     app.run(debug=True)

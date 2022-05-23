@@ -1,4 +1,4 @@
-from app import db
+from exts import db
 
 
 class District(db.Model):
