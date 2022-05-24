@@ -1,20 +1,26 @@
 .mapCss {
     width: 100%;
     height: calc(100% - 25px);
+    position: absolute;
 }
 
 .contCss {
     width: 100%;
     height: 25px;
+    position: absolute;
+    bottom: 0;
 }
 
-.halfCss {
-    width: 50%;
-    height: 100%;
+.leftCss {
+    height: 25px;
     float: left;
+}
+
+.rightCss {
+    height: 25px;
+    float: right;
 }
 
 .selCss {
     height: 25px;
-    border: 0px;
 }

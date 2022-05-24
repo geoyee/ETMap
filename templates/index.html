@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <script src="{{url_for('static', filename='jquery-2.2.2.min.js')}}"></script>
@@ -13,11 +14,14 @@
         <script src="{{url_for('static', filename='app.js')}}"></script>
     </div>
     <div id="contDiv" class="contCss">
-        <div id="fileDiv" class="halfCss">
-            <input type="file" name="fileName" accept="image/png, image/jpeg, image/jpg">
+        <div id="fileDiv" class="leftCss">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <input type="file" name="filename" value="选择文件" accept=".jpg, .png" class="leftCss">
+                <input type="submit" name="submit" value="确定" class="leftCss">
+            </form>
         </div>
-        <div id="disDiv" class="halfCss">
-            &nbsp时间：
+        <div id="disDiv" class="rightCss">
+            时间：
             <select id="distsel" class="selCss">
             {% for district in districts %}
                 <option value="{{district.id}}">{{district.time}}</option>

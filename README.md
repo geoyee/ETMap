@@ -8,21 +8,21 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 
 1. Clone this repo:
 
-      ```shell
-      git clone https://github.com/geoyee/ETMap.git
-      ```
+   ```shell
+   git clone https://github.com/geoyee/ETMap.git
+   ```
 
-2.  Install dependencies:
+2. Install dependencies:
 
-      ```shell
-      pip install -r requirements.txt
-      ```
+   ```shell
+   pip install -r requirements.txt
+   ```
 
 3. Start server:
 
-      ```shell
-      python app.py
-      ```
+   ```shell
+   python app.py
+   ```
 
       View the demo by navigating to `http://localhost:5000`.
 
@@ -37,7 +37,7 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 - [x] Update geo-text-split and place merge.
 - [x] Add about time.
 - [x] Update UI about image input.
-- [ ] Add file selection.
+- [x] Add file selection.
 
 ## Reference
 

@@ -1,6 +1,8 @@
 from typing import Any
+import os
 import os.path as osp
-from flask import Flask, render_template, jsonify
+from werkzeug.utils import secure_filename
+from flask import Flask, render_template, jsonify, request
 from exts import db
 from models import District, Point, add_datas
 
@@ -10,10 +12,24 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 db.init_app(app)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index() -> Any:
-    districts = District.query.all()
-    return render_template("index.html", districts=districts)
+    if request.method == "POST":
+        file = request.files.get("filename")
+        file_name = file.filename
+        file_name = secure_filename(file_name)
+        save_dir = osp.join(osp.dirname(__file__), "temp")
+        if not osp.exists(save_dir):
+            os.makedirs(save_dir)
+        save_path = osp.join(save_dir, file_name)
+        file.save(save_path)
+        with app.app_context():
+            db.create_all()
+            add_datas(save_path, "沈阳市", db)
+        districts = District.query.all()
+        return render_template("index.html", districts=districts)
+    else:
+        return render_template("index.html")
 
 
 @app.route("/district/<int:district_id>")
@@ -24,9 +40,4 @@ def district(district_id: int) -> Any:
 
 
 if __name__ == "__main__":
-    if not osp.exists("app.db"):
-        path = "data/test.png"
-        with app.app_context():
-            db.create_all()
-            add_datas(path, "沈阳市", db)
     app.run(debug=True)
