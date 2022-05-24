@@ -37,7 +37,7 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 - [x] Update geo-text-split and place merge.
 - [x] Add about time.
 - [x] Update UI about image input.
-- [] Add file selection.
+- [ ] Add file selection.
 
 ## Reference
 
