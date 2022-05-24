@@ -68,9 +68,9 @@ function renderData(districtid) {
 
 $(function() {
     makeMap();
-    renderData('0');
-    $('#distsel').change(function() {
-        var val = $('#distsel option:selected').val();
+    renderData("0");
+    $("#distsel").change(function() {
+        var val = $("#distsel option:selected").val();
         renderData(val);
     });
 })

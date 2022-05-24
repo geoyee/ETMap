@@ -4,20 +4,25 @@
     <script src="{{url_for('static', filename='leaflet/leaflet.js')}}"></script>
     <script src="{{url_for('static', filename='leaflet/leaflet.ChineseTmsProviders.js')}}"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='leaflet/leaflet.css')}}"/>
-    <link rel="stylesheet" href="{{url_for('static', filename='demo.css')}}"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='app.css')}}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="shortcut icon" href="#"/>
 </head>
 <body>
-    <div id="mapDiv" class='map_css'>
-        <script src="{{url_for('static', filename='demo.js')}}"></script>
+    <div id="mapDiv" class="mapCss">
+        <script src="{{url_for('static', filename='app.js')}}"></script>
     </div>
-    <div id="disDiv" class='dis_css'>
-        &nbsp时间：
-        <select id="distsel">
-        {% for district in districts %}
-            <option value="{{district.id}}">{{district.time}}</option>
-        {% endfor %}
-        </select>
+    <div id="contDiv" class="contCss">
+        <div id="fileDiv" class="halfCss">
+            <input type="file" name="fileName" accept="image/png, image/jpeg, image/jpg">
+        </div>
+        <div id="disDiv" class="halfCss">
+            &nbsp时间：
+            <select id="distsel" class="selCss">
+            {% for district in districts %}
+                <option value="{{district.id}}">{{district.time}}</option>
+            {% endfor %}
+            </select>
+        </div>
     </div>
 </body>

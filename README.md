@@ -36,7 +36,8 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 - [x] Add draw lines.
 - [x] Update geo-text-split and place merge.
 - [x] Add about time.
-- [ ] Update UI about image input.
+- [x] Update UI about image input.
+- [] Add file selection.
 
 ## Reference
 
@@ -46,3 +47,4 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 4. [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/doc/doc_en/models_list_en.md)
 5. [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/docs/model_zoo/taskflow.md)
 6. [JioNLP](https://github.com/dongrixinyu/JioNLP)
+7. [NameExtractor](https://github.com/samyak1999/NameExtractor)
