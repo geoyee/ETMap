@@ -8,7 +8,7 @@ from models import District, Point
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 db.init_app(app)
 
 
@@ -27,24 +27,25 @@ def district(district_id: int) -> Any:
 
 def add_datas(path: str, city: str, db: SQLAlchemy) -> None:
     geo_extracter = GeoExtracter(city)
-    lnglon_list = geo_extracter.location(path)
-    district = District(0, "Time 0")
-    db.session.add(district)
-    for did, lnglat in enumerate(lnglon_list):
-        point = Point(
-            did,
-            district,
-            lnglat["time"],
-            lnglat["address"],
-            lnglat["lat"],
-            lnglat["lng"],
-        )
-        db.session.add(point)
+    time_dict = geo_extracter.location(path)
+    for did, (timer, lnglat_list) in enumerate(time_dict.items()):
+        district = District(did, timer)
+        db.session.add(district)
+        for pid, lnglat in enumerate(lnglat_list):
+            point = Point(
+                100 * did + pid,
+                district,
+                lnglat["time"],
+                lnglat["address"],
+                lnglat["lat"],
+                lnglat["lng"],
+            )
+            db.session.add(point)
     db.session.commit()
 
 
 if __name__ == "__main__":
-    if not osp.exists("test.db"):
+    if not osp.exists("app.db"):
         path = "data/test.png"
         with app.app_context():
             db.create_all()

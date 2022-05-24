@@ -70,6 +70,6 @@ class OCRer(object):
 
 
 if __name__ == "__main__":
-    path = "datas/test.png"
+    path = "data/test.png"
     output = OCRer().predict(path)
     print(output)

@@ -47,6 +47,9 @@ function makeMap() {
     }).addTo(base_map);
 }
 
+var point_layer = L.layerGroup();
+var line_layer = L.layerGroup();
+
 function renderData(districtid) {
     var lines = [];
     $.getJSON("/district/" + districtid, function(obj) {
@@ -54,11 +57,20 @@ function renderData(districtid) {
             lines.push([arr[0], arr[1]]);
             return L.marker([arr[0], arr[1]]).bindPopup(arr[2]);
         });
+        base_map.removeLayer(point_layer);
+        base_map.removeLayer(line_layer);
         point_layer = L.layerGroup(markers);
+        line_layer = L.polyline(lines, {color: "red"});
         base_map.addLayer(point_layer);
-        L.polyline(lines, {color: "red"}).addTo(base_map);
+        base_map.addLayer(line_layer);
     });
 }
 
-makeMap();
-renderData("0");
+$(function() {
+    makeMap();
+    renderData('0');
+    $('#distsel').change(function() {
+        var val = $('#distsel option:selected').val();
+        renderData(val);
+    });
+})

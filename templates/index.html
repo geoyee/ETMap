@@ -9,6 +9,15 @@
     <link rel="shortcut icon" href="#"/>
 </head>
 <body>
-    <div id="mapDiv" class='test'></div>
-    <script src="{{url_for('static', filename='demo.js')}}"></script>
+    <div id="mapDiv" class='map_css'>
+        <script src="{{url_for('static', filename='demo.js')}}"></script>
+    </div>
+    <div id="disDiv" class='dis_css'>
+        &nbsp时间：
+        <select id="distsel">
+        {% for district in districts %}
+            <option value="{{district.id}}">{{district.time}}</option>
+        {% endfor %}
+        </select>
+    </div>
 </body>

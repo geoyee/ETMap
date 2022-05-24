@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict
 import jionlp
 from paddlenlp import Taskflow
 
@@ -20,7 +20,7 @@ class GeoExtracter:
         self.end_flags = ["w"]  # "w" is punctuation
         self.end_txts = ["；", "、", "，", "。"]  # chinese split punctuation
 
-    def location(self, image_file: str) -> List:
+    def location(self, image_file: str) -> Dict:
         text = self.ocrer.predict(image_file)
         text_list = self.ner(text)
         # print(text_list)
@@ -43,7 +43,8 @@ class GeoExtracter:
             else:
                 text += txt
         # geocoding
-        lnglon_list = []
+        time_dict = {}
+        md_time = ""  # month and day
         for idx, text in enumerate(address_list):
             if GeoExtracter.is_contains_chinese(text):
                 if " " not in text:  # just have address
@@ -51,7 +52,9 @@ class GeoExtracter:
                     address = text
                 else:
                     time, address = text.split(" ")
-                if address != "":
+                if address == "":
+                    md_time = time
+                else:  # just have address
                     address = jionlp.parse_location(
                         self.city + address, change2new=True, town_village=True
                     )["full_location"]
@@ -62,9 +65,13 @@ class GeoExtracter:
                     if lnglon is not None:
                         lnglon["time"] = time.split("-")[0].rjust(5, "0")
                         lnglon["address"] = address
-                        lnglon_list.append(lnglon)
-        lnglon_list.sort(key=lambda k: (k.get("time", 0)), reverse=False)
-        return lnglon_list
+                        if md_time not in time_dict.keys():
+                            time_dict[md_time] = [lnglon]
+                        else:
+                            time_dict[md_time].append(lnglon)
+        for _, v in time_dict.items():
+            v.sort(key=lambda k: (k.get("time", 0)), reverse=False)
+        return time_dict
 
     @classmethod
     def is_contains_chinese(self, text: str) -> bool:
@@ -75,8 +82,7 @@ class GeoExtracter:
 
 
 if __name__ == "__main__":
-    path = "datas/test.png"
+    path = "data/test.png"
     geo_extracter = GeoExtracter("沈阳市")
-    lnglon_list = geo_extracter.location(path)
-    print(lnglon_list)
-    print("数据量：", len(lnglon_list))
+    time_dict = geo_extracter.location(path)
+    print(time_dict)
