@@ -49,3 +49,4 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 5. [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/docs/model_zoo/taskflow.md)
 6. [JioNLP](https://github.com/dongrixinyu/JioNLP)
 7. [NameExtractor](https://github.com/samyak1999/NameExtractor)
+8. [全国三级联动----省市县 原生js前端](https://blog.csdn.net/sqL520lT/article/details/111051811)

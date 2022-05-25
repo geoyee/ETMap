@@ -3,7 +3,7 @@ from utils import GeoExtracter
 from exts import db
 
 
-class District(db.Model):
+class Day(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(db.String(10))
 
@@ -18,20 +18,20 @@ class Point(db.Model):
     address = db.Column(db.String(80))
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
-    district_id = db.Column(db.Integer, db.ForeignKey("district.id"))
-    district = db.relationship("District")
+    day_id = db.Column(db.Integer, db.ForeignKey("day.id"))
+    day = db.relationship("Day")
 
     def __init__(
         self,
         id: int,
-        district: District,
+        day: Day,
         time: str,
         address: str,
         lat: float,
         lng: float,
     ) -> None:
         self.id = id
-        self.district = district
+        self.day = day
         self.time = time
         self.address = address
         self.latitude = lat
@@ -50,12 +50,12 @@ def add_datas(path: str, city: str, db: SQLAlchemy) -> None:
     geo_extracter = GeoExtracter(city)
     time_dict = geo_extracter.location(path)
     for did, (timer, lnglat_list) in enumerate(time_dict.items()):
-        district = District(did, timer)
-        db.session.add(district)
+        day = Day(did, timer)
+        db.session.add(day)
         for pid, lnglat in enumerate(lnglat_list):
             point = Point(
                 100 * did + pid,
-                district,
+                day,
                 lnglat["time"],
                 lnglat["address"],
                 lnglat["lat"],

@@ -4,7 +4,7 @@ import os.path as osp
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, jsonify, request
 from exts import db
-from models import District, Point, add_datas
+from models import Day, Point, add_datas
 
 
 app = Flask(__name__)
@@ -18,6 +18,8 @@ def index() -> Any:
         file = request.files.get("filename")
         if file is not None:
             province = request.form.get("province")  # get province
+            city = request.form.get("city")  # get city
+            district = province + city if province != city else city
             file_name = file.filename
             file_name = secure_filename(file_name)
             save_dir = osp.join(osp.dirname(__file__), "temp")
@@ -27,18 +29,18 @@ def index() -> Any:
             file.save(save_path)
             with app.app_context():
                 db.create_all()
-                add_datas(save_path, province, db)
-            districts = District.query.all()
-            return render_template("index.html", districts=districts)
+                add_datas(save_path, district, db)
+            days = Day.query.all()
+            return render_template("index.html", days=days)
         else:
             return render_template("index.html")
     else:
         return render_template("index.html")
 
 
-@app.route("/district/<int:district_id>")
-def district(district_id: int) -> Any:
-    points = Point.query.filter_by(district_id=district_id).all()
+@app.route("/day/<int:day_id>")
+def day(day_id: int) -> Any:
+    points = Point.query.filter_by(day_id=day_id).all()
     coords = [[point.latitude, point.longitude, point.address] for point in points]
     return jsonify({"data": coords})
 

@@ -50,9 +50,9 @@ function makeMap() {
 var point_layer = L.layerGroup();
 var line_layer = L.layerGroup();
 
-function renderData(districtid) {
+function renderData(dayid) {
     var lines = [];
-    $.getJSON("/district/" + districtid, function(obj) {
+    $.getJSON("/day/" + dayid, function(obj) {
         var markers = obj.data.map(function(arr) {
             lines.push([arr[0], arr[1]]);
             return L.marker([arr[0], arr[1]]).bindPopup(arr[2]);
@@ -68,8 +68,12 @@ function renderData(districtid) {
 
 $(function() {
     makeMap();
-    $("#distsel").change(function() {
-        var val = $("#distsel option:selected").val();
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    if(fso.FileExists("app.db")) {
+        renderData("0");
+    }
+    $("#daysel").change(function() {
+        var val = $("#daysel option:selected").val();
         renderData(val);
     });
 })
