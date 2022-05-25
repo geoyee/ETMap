@@ -28,7 +28,6 @@ def index() -> Any:
             save_path = osp.join(save_dir, file_name)
             file.save(save_path)
             with app.app_context():
-                db.create_all()
                 add_datas(save_path, district, db)
             days = Day.query.all()
             return render_template("index.html", days=days)
@@ -46,4 +45,6 @@ def day(day_id: int) -> Any:
 
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

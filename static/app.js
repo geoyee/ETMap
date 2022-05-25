@@ -68,10 +68,7 @@ function renderData(dayid) {
 
 $(function() {
     makeMap();
-    var fso = new ActiveXObject("Scripting.FileSystemObject");
-    if(fso.FileExists("app.db")) {
-        renderData("0");
-    }
+    renderData("0");
     $("#daysel").change(function() {
         var val = $("#daysel option:selected").val();
         renderData(val);
