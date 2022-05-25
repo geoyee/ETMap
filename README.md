@@ -2,7 +2,7 @@
 
 Geo temporal and spatial visualization of epidemic track. The main contents include Character detection and recognition (based on PaddleOCR), Named entity recognition (based on PaddleNLP), Map display and interaction (based on Leaflet) and Front and end interaction (based on Flask).
 
-![display](https://user-images.githubusercontent.com/71769312/169689019-53e38578-4473-4ac7-bf48-6035f5b29c58.png)
+![btm](https://user-images.githubusercontent.com/71769312/170213925-2f7d1503-372b-4bc9-9e05-932d41329875.png)
 
 ## How to use
 
@@ -39,6 +39,7 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 - [x] Update UI about image input.
 - [x] Add file selection.
 - [x] Add province selection.
+- [ ] Add arrows to polyline.
 
 ## Reference
 
