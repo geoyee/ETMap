@@ -19,13 +19,13 @@ function makeMap() {
     var zhs = ["zh-cn", "zh-tw", "zh-hk", "zh-om", "zh-cht", "zh-chs"];
     if (zhs.indexOf(lang.toLowerCase()) > -1) {
         default_map = tianditu;
-        default_name = "TianDiTu(default)"
+        default_name = "天地图"
         other_map = osm;
-        other_name = "OSM"
+        other_name = "开放街道地图"
     }
     else {
         default_map = osm;
-        default_name = "OSM(default)"
+        default_name = "OpenStreetMap"
         other_map = tianditu;
         other_name = "TianDiTu"
     }
@@ -68,7 +68,6 @@ function renderData(districtid) {
 
 $(function() {
     makeMap();
-    renderData("0");
     $("#distsel").change(function() {
         var val = $("#distsel option:selected").val();
         renderData(val);

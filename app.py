@@ -16,18 +16,22 @@ db.init_app(app)
 def index() -> Any:
     if request.method == "POST":
         file = request.files.get("filename")
-        file_name = file.filename
-        file_name = secure_filename(file_name)
-        save_dir = osp.join(osp.dirname(__file__), "temp")
-        if not osp.exists(save_dir):
-            os.makedirs(save_dir)
-        save_path = osp.join(save_dir, file_name)
-        file.save(save_path)
-        with app.app_context():
-            db.create_all()
-            add_datas(save_path, "沈阳市", db)
-        districts = District.query.all()
-        return render_template("index.html", districts=districts)
+        if file is not None:
+            province = request.form.get("province")  # get province
+            file_name = file.filename
+            file_name = secure_filename(file_name)
+            save_dir = osp.join(osp.dirname(__file__), "temp")
+            if not osp.exists(save_dir):
+                os.makedirs(save_dir)
+            save_path = osp.join(save_dir, file_name)
+            file.save(save_path)
+            with app.app_context():
+                db.create_all()
+                add_datas(save_path, province, db)
+            districts = District.query.all()
+            return render_template("index.html", districts=districts)
+        else:
+            return render_template("index.html")
     else:
         return render_template("index.html")
 

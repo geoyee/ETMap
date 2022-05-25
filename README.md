@@ -38,6 +38,7 @@ Geo temporal and spatial visualization of epidemic track. The main contents incl
 - [x] Add about time.
 - [x] Update UI about image input.
 - [x] Add file selection.
+- [x] Add province selection.
 
 ## Reference
 
